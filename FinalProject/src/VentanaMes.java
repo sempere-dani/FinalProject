@@ -174,7 +174,7 @@ public class VentanaMes extends JFrame {
 			System.err.println("Error al escribir el archivo");
 		}
 		catch(ClassNotFoundException clException){
-			System.err.println("Error al abrir el archivo");
+			System.err.println("Error al abrir el  archivo");
 		
 		}//fin del catch
 	}//fin del metodo ecuperarFichero
