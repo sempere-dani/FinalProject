@@ -154,7 +154,7 @@ public class VentanaMes extends JFrame {
 		});
 		btnGuardar.setBounds(260, 24, 89, 60);
 		contentPane.add(btnGuardar);
-		//leerGastosMes();
+		//leerGastosMes(); 
 	}
 	//Guarda los datos GastosMes
 	private void guardarGastosMes(){
