@@ -11,7 +11,7 @@ public class GastosMes implements Serializable {
 	private int servicios;
 	private int otros;
 	
-	/*public GastosMes(String mes,int gastoComida,int gastoGasolina,int gastoOcio,int Gastoserv,int GastoOtros){
+	public GastosMes(String mes,int gastoComida,int gastoGasolina,int gastoOcio,int Gastoserv,int GastoOtros){
 		
 		nombreMes=mes;
 		comida=gastoComida;
@@ -20,7 +20,7 @@ public class GastosMes implements Serializable {
 		servicios=Gastoserv;
 		otros=GastoOtros;
 		
-	}*/
+	}
 	public GastosMes(){
 		nombreMes="";
 		comida=0;

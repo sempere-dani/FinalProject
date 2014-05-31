@@ -113,8 +113,8 @@ public class VentanaMes extends JFrame {
 		totros.setBounds(143, 171, 86, 20);
 		contentPane.add(totros);
 		
-		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.addActionListener(new ActionListener() {
+		JButton btnGuardarF = new JButton("GuardarEnFichero");
+		btnGuardarF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				gastos.setcomida(Integer.valueOf(tcomida.getText()));
 				gastos.setocio(Integer.valueOf(tocio.getText()));
@@ -125,8 +125,8 @@ public class VentanaMes extends JFrame {
 				guardarEnFichero();
 			}
 		});
-		btnGuardar.setBounds(140, 215, 89, 23);
-		contentPane.add(btnGuardar);
+		btnGuardarF.setBounds(140, 215, 89, 23);
+		contentPane.add(btnGuardarF);
 		
 		JButton btnLeer = new JButton("Leer");
 		btnLeer.addActionListener(new ActionListener() {
@@ -143,8 +143,37 @@ public class VentanaMes extends JFrame {
 		});
 		btnLeer.setBounds(248, 215, 89, 23);
 		contentPane.add(btnLeer);
+		
+		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				guardarGastosMes();
+				
+			}
+			
+		});
+		btnGuardar.setBounds(260, 24, 89, 60);
+		contentPane.add(btnGuardar);
+		//leerGastosMes();
 	}
-	
+	//Guarda los datos GastosMes
+	private void guardarGastosMes(){
+		gastos.setcomida(Integer.valueOf(tcomida.getText()));
+		gastos.setgasolina(Integer.valueOf(tgasolina.getText()));
+		gastos.setnombreMes(tmes.getText());
+		gastos.setocio(Integer.valueOf(tocio.getText()));
+		gastos.setotros(Integer.valueOf(totros.getText()));
+		gastos.setservicios(Integer.valueOf(tservicios.getText()));
+		}
+	//Cargar datos mes
+	private void leerGastosMes(){
+		tcomida.setText(String.valueOf(gastos.getcomida()));
+		tgasolina.setText(String.valueOf(gastos.getgasolina()));
+		tmes.setText(gastos.getnombreMes());
+		tocio.setText(String.valueOf(gastos.getocio()));
+		totros.setText(String.valueOf(gastos.getotros()));
+		tservicios.setText(String.valueOf(gastos.getservicios()));
+	}
 	private void guardarEnFichero(){
 		
 		try//abre el archivo
