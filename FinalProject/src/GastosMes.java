@@ -69,4 +69,7 @@ public class GastosMes implements Serializable {
 	public void setotros(int otros){
 		this.otros=otros;
 	}
+	public String toString(){
+		return nombreMes;
+	}
 }

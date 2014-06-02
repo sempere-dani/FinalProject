@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -28,6 +29,8 @@ public class VentanaMes extends JFrame {
 	private GastosMes gastos;
 	private ObjectOutputStream salida;
 	private ObjectInputStream entrada;
+	private JComboBox jGastosAnyo;
+	private boolean modifica;
 	
 	/**
 	 * Launch the application.
@@ -48,9 +51,12 @@ public class VentanaMes extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaMes(GastosMes gastosModificar) {
+	public VentanaMes(GastosMes gastosModificar,JComboBox jGastosAnyo,boolean modifica) {
 		//asignar gastos
 		gastos=gastosModificar;
+		this.jGastosAnyo=jGastosAnyo;
+		this.modifica=modifica;
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -125,7 +131,7 @@ public class VentanaMes extends JFrame {
 				guardarEnFichero();
 			}
 		});
-		btnGuardarF.setBounds(140, 215, 89, 23);
+		btnGuardarF.setBounds(86, 215, 143, 23);
 		contentPane.add(btnGuardarF);
 		
 		JButton btnLeer = new JButton("Leer");
@@ -154,7 +160,10 @@ public class VentanaMes extends JFrame {
 		});
 		btnGuardar.setBounds(260, 24, 89, 60);
 		contentPane.add(btnGuardar);
-		//leerGastosMes(); 
+		
+		leerGastosMes(); //Carga los datos guardados
+		
+		
 	}
 	//Guarda los datos GastosMes
 	private void guardarGastosMes(){
@@ -164,6 +173,15 @@ public class VentanaMes extends JFrame {
 		gastos.setocio(Integer.valueOf(tocio.getText()));
 		gastos.setotros(Integer.valueOf(totros.getText()));
 		gastos.setservicios(Integer.valueOf(tservicios.getText()));
+		if(!modifica)
+			jGastosAnyo.addItem(gastos);
+		else
+		{
+			GastosMes gastosElegido=(GastosMes)jGastosAnyo.getSelectedItem();
+			gastosElegido.setnombreMes(gastos.getnombreMes());
+			
+		}
+		
 		}
 	//Cargar datos mes
 	private void leerGastosMes(){

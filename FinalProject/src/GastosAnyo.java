@@ -10,7 +10,7 @@ public class GastosAnyo implements Serializable{
 	private int numMes;
 	
 	public GastosAnyo(){
-		numMes=12;
+		numMes=0;
 		anyo=2014;
 		
 		for(int i=0;i<numMes;i++);
@@ -47,14 +47,21 @@ public class GastosAnyo implements Serializable{
 		//return gastos;}
 	
 	
-	public GastosMes getGastosMes(Integer valueOf) {
+	public GastosMes getGastosMes(Integer posicion) {
 		
-		return null;
+		return gastos.get(posicion);
 	}
 	
 	public int getnumMes(){
 		return numMes;
 	
 }
+	public void newGastosMes(){
+		gastos.add(new GastosMes());
+		numMes++;
+	}
 	
+	public void deleteGastosMes(int posicion){
+		gastos.remove(posicion);
+	}
 }
