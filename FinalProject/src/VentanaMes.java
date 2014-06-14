@@ -31,6 +31,7 @@ public class VentanaMes extends JFrame {
 	private ObjectInputStream entrada;
 	private JComboBox jGastosAnyo;
 	private boolean modifica;
+	private GastosAnyo mes;
 	
 	/**
 	 * Launch the application.
@@ -50,8 +51,9 @@ public class VentanaMes extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param mes 
 	 */
-	public VentanaMes(GastosMes gastosModificar,JComboBox jGastosAnyo,boolean modifica) {
+	public VentanaMes(GastosMes gastosModificar,JComboBox jGastosAnyo,boolean modifica, GastosAnyo mes) {
 		//asignar gastos
 		gastos=gastosModificar;
 		this.jGastosAnyo=jGastosAnyo;
@@ -174,7 +176,11 @@ public class VentanaMes extends JFrame {
 		gastos.setotros(Integer.valueOf(totros.getText()));
 		gastos.setservicios(Integer.valueOf(tservicios.getText()));
 		if(!modifica)
+		{
 			jGastosAnyo.addItem(gastos);
+			this.mes.newGastosMesBD(gastos);
+			
+		}
 		else
 		{
 			GastosMes gastosElegido=(GastosMes)jGastosAnyo.getSelectedItem();

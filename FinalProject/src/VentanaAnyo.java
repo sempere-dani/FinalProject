@@ -108,7 +108,7 @@ public class VentanaAnyo extends JFrame {
 	}
 	
 	private void openGastosMesWindow(GastosMes gastos,boolean modifica){
-		frameGastosMes = new VentanaMes(gastos,this.comboBox,modifica);
+		frameGastosMes = new VentanaMes(gastos,this.comboBox,modifica,this.mes);
 		frameGastosMes.setVisible(true);
 		frameGastosMes.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}

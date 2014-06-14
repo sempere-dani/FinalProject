@@ -1,5 +1,5 @@
 
-public class Principal {
+/*public class Principal {
 		//Clase que lanza la aplicacion
 	
 	public static void main(String[] args) {
@@ -12,11 +12,11 @@ public class Principal {
 		frame.setVisible(true);
 		*/
 		
-		GastosAnyo mes=new GastosAnyo();
+		/*GastosAnyo mes=new GastosAnyo();
 		
 		
 		VentanaAnyo frame = new VentanaAnyo(mes);
 		frame.setVisible(true);
 	}
 
-}
+}*/
