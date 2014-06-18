@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.JComboBox;
+
 
 
 
@@ -52,7 +54,7 @@ public class GastosAnyo implements Serializable{
 	public int getanyo(){
 		return anyo;
 	}
-	public void setanyo(String nombreMes){
+	public void setanyo(int anyo){
 		this.anyo=anyo;
 	}
 	//public GastosMes [] getGastosMes(){
@@ -91,16 +93,24 @@ public class GastosAnyo implements Serializable{
 			exceptionSql.printStackTrace();
 		}
 	}
-	public void leerGastosAnyo(){
+	public void leerGastosAnyo(int anyo,JComboBox<GastosMes>comboBox){
 		try{
 			//consulta la BBDD
 			instruccion = (Statement) conexion.createStatement();
-			conjuntoResultados = instruccion.executeQuery("SELECT numMes,anyo FROM gastosBD");
+			conjuntoResultados = instruccion.executeQuery("SELECT * FROM gastosmes where numAnyo like "+anyo);
 			conjuntoResultados.next();
 			
-			//almacener liga
-			this.numMes=(int)conjuntoResultados.getObject("numMes");
-			this.anyo=(int)conjuntoResultados.getObject("anyo");
+			while(conjuntoResultados.next())
+			{
+				GastosMes mes=new GastosMes();
+				mes.setanyo(anyo);
+				mes.setmes((int)conjuntoResultados.getObject("numMes"));
+				mes.setcomida((int)conjuntoResultados.getObject("comida"));
+				comboBox.addItem(mes);
+			}
+			//almacenar liga
+			//this.numMes=(int)conjuntoResultados.getObject("numMes");
+			//this.anyo=(int)conjuntoResultados.getObject("anyo");
 		}
 		catch(SQLException exceptionSql){
 			exceptionSql.printStackTrace();

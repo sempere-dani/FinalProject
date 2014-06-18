@@ -15,9 +15,9 @@ import javax.swing.JComboBox;
 public class VentanaAnyo extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField NombreMes;
+	private JTextField NombreAnyo;
 	private JTextField NumMes;
-	private GastosAnyo mes;
+	private GastosAnyo anyo;
 	private GastosMes gastos;
 	private VentanaMes frameGastosMes;
 	private JComboBox<GastosMes> comboBox;
@@ -42,7 +42,7 @@ public class VentanaAnyo extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaAnyo(GastosAnyo anyoModificar){
-		mes=anyoModificar;
+	anyo=anyoModificar;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -51,9 +51,9 @@ public class VentanaAnyo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel anyo = new JLabel("A\u00F1o");
-		anyo.setBounds(36, 40, 95, 14);
-		contentPane.add(anyo);
+		JLabel anyotxt = new JLabel("A\u00F1o");
+		anyotxt.setBounds(36, 40, 95, 14);
+		contentPane.add(anyotxt);
 		
 		JLabel lblNmeroMes = new JLabel("N\u00FAmero Mes");
 		lblNmeroMes.setBounds(206, 40, 95, 14);
@@ -63,10 +63,11 @@ public class VentanaAnyo extends JFrame {
 		lblGastosMesModificar.setBounds(36, 138, 128, 14);
 		contentPane.add(lblGastosMesModificar);
 		
-		NombreMes = new JTextField();
-		NombreMes.setBounds(36, 65, 86, 20);
-		contentPane.add(NombreMes);
-		NombreMes.setColumns(10);
+		NombreAnyo = new JTextField();
+		NombreAnyo.setEditable(false);
+		NombreAnyo.setBounds(36, 65, 86, 20);
+		contentPane.add(NombreAnyo);
+		NombreAnyo.setColumns(10);
 		
 		NumMes = new JTextField();
 		NumMes.setEditable(false);
@@ -78,7 +79,7 @@ public class VentanaAnyo extends JFrame {
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				openGastosMesWindow(mes.getGastosMes(comboBox.getSelectedIndex()),true);
+				openGastosMesWindow(anyo.getGastosMes(comboBox.getSelectedIndex()),true);
 				
 				//VentanaMes frameGastosMes = new VentanaMes(mes.getGastosMes(Integer.valueOf(gastosModificar.getText())));
 				//frameGastosMes.setVisible(true);
@@ -95,8 +96,8 @@ public class VentanaAnyo extends JFrame {
 		JButton btnMas = new JButton("+");
 		btnMas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mes.newGastosMes();//creamos un nuevo gasto
-				openGastosMesWindow(mes.getGastosMes(mes.getnumMes()-1),false);
+				anyo.newGastosMes();//creamos un nuevo gasto
+				openGastosMesWindow(anyo.getGastosMes(anyo.getnumMes()-1),false);
 			}
 		});
 		btnMas.setBounds(142, 217, 54, 23);
@@ -105,10 +106,16 @@ public class VentanaAnyo extends JFrame {
 		JButton btnMenos = new JButton("-");
 		btnMenos.setBounds(212, 217, 54, 23);
 		contentPane.add(btnMenos);
+		
+		//rellenar casilla año
+		NombreAnyo.setText(String.valueOf(anyoModificar.getanyo()));
+		
+		//leer los meses
+		anyo.leerGastosAnyo(anyoModificar.getanyo(),comboBox);
 	}
 	
 	private void openGastosMesWindow(GastosMes gastos,boolean modifica){
-		frameGastosMes = new VentanaMes(gastos,this.comboBox,modifica,this.mes);
+		frameGastosMes = new VentanaMes(gastos,this.comboBox,modifica,this.anyo);
 		frameGastosMes.setVisible(true);
 		frameGastosMes.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}

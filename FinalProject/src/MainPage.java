@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
@@ -20,7 +21,7 @@ public class MainPage extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private GastosAnyo mes;
+	private GastosAnyo anyo;
 	private VentanaAnyo frameMes;
 	
 	
@@ -66,9 +67,9 @@ public class MainPage extends JFrame {
 		}
 		
 		
-		//Creamos el mes
-		mes=new GastosAnyo(conexion);
-		mes.leerGastosAnyo();
+		//Creamos el anyo
+		anyo=new GastosAnyo(conexion);
+		//anyo.leerGastosAnyo();
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,7 +88,15 @@ public class MainPage extends JFrame {
 		btnNewButton_2.setBounds(48, 104, 124, 23);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				openMesWindow(mes);
+				if(textField.getText().equals(""))
+				{
+					JOptionPane.showMessageDialog(null, "se debe introducir un año");
+				}
+				else
+				{
+					openMesWindow(textField.getText(),anyo);
+				}
+				//openMesWindow(anyo);
 				
 			}
 		});
@@ -112,8 +121,9 @@ public class MainPage extends JFrame {
 		contentPane.add(btnAñadir);
 	}
 	
-	private void openMesWindow(GastosAnyo mes){
-		frameMes = new VentanaAnyo(mes);
+	private void openMesWindow(String AnyoAdmin,GastosAnyo anyo){
+		anyo.setanyo(Integer.valueOf(AnyoAdmin));
+		frameMes = new VentanaAnyo(anyo);
 		frameMes.setVisible(true);
 		frameMes.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}

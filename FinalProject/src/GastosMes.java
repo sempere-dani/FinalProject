@@ -5,6 +5,8 @@ public class GastosMes implements Serializable {
 	
 	//atributos GastoMes
 	private String nombreMes;
+	private int anyo;
+	private int mes;
 	private int comida;
 	private int gasolina;
 	private int ocio;
@@ -32,7 +34,18 @@ public class GastosMes implements Serializable {
 		
 		
 	
-	
+	public int getmes(){
+		return mes;
+	}
+	public void setmes(int mes){
+		this.mes=mes;
+	}
+	public int getanyo(int anyo){
+		return anyo;
+		}
+	public void setanyo(int anyo){
+		this.anyo=anyo;
+	}
 	public String getnombreMes(){
 		return nombreMes;
 	}
@@ -69,7 +82,10 @@ public class GastosMes implements Serializable {
 	public void setotros(int otros){
 		this.otros=otros;
 	}
+	//public String toString(){
+		//return nombreMes;
+	//}
 	public String toString(){
-		return nombreMes;
+		return String.valueOf(mes);
 	}
 }
